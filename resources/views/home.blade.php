@@ -10,8 +10,17 @@
 
 <body>
 
+    {{-- Utilitzzo di data fittizia che combacia con i dati inseriti manualmente in phpMyAdmin --}}
+    <?php
+    $fakeCurrentDate = 'j';
+    ?>
+
+    <p>Data corrente: {{ $fakeCurrentDate }} </p>
+
     @foreach ($trains as $train)
-        {{ $train['azienda'] }}
+        @if ($train['orario_partenza'] == $fakeCurrentDate)
+            <p>Azienda: {{ $train['azienda'] }} <span> | Orario partenza: {{ $train['orario_partenza'] }} </span> </p>
+        @endif
     @endforeach
 
 </body>
