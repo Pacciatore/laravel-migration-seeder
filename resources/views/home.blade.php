@@ -10,7 +10,9 @@
 
 <body>
 
-    Homepage treni
+    @foreach ($trains as $train)
+        {{ $train['azienda'] }}
+    @endforeach
 
 </body>
 
