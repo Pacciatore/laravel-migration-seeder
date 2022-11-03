@@ -12,10 +12,10 @@
 
     {{-- Utilitzzo di data fittizia che combacia con i dati inseriti manualmente in phpMyAdmin --}}
     <?php
-    $fakeCurrentDate = 'j';
+    $currentDate = date('Y-m-d');
     ?>
 
-    <p>Data corrente: {{ $fakeCurrentDate }} </p>
+    <p>Data corrente: {{ $currentDate }} </p>
 
     @foreach ($trains as $train)
         @if ($train['orario_partenza'] == $fakeCurrentDate)
