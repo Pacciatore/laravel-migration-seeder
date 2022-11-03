@@ -28,11 +28,58 @@
     $currentDate = date('Y-m-d');
     ?>
 
-    <p>Data corrente: {{ $currentDate }} </p>
+    <h1 class="text-center text-uppercase">Treni</h1>
 
-    @foreach ($trains as $train)
-        <p>Azienda: {{ $train['azienda'] }} <span> | Orario partenza: {{ $train['orario_partenza'] }} </span> </p>
-    @endforeach
+    <div class="container py-5">
+
+        <p>Data corrente: {{ $currentDate }} </p>
+
+        <div class="card-container d-flex flex-wrap gap-4 justify-content-center">
+            @foreach ($trains as $train)
+                <div class="card col-4 p-2">
+                    <h3>Azienda: {{ $train['azienda'] }} </h3>
+                    <h6>Codice treno: {{ $train['codice_treno'] }} </h6>
+
+                    {{-- Contenitore delle info della tratta --}}
+                    <div class="train-run-info d-flex justify-content-between">
+
+                        {{-- Uso di un 'pannello sinistro' per display info luoghi e orari --}}
+                        <div class="left">
+
+                            <div class="stations-info">
+                                <p class="m-0"> {{ $train['stazione_partenza'] }} </p>
+                                <p class="m-0"> {{ $train['stazione_arrivo'] }} </p>
+                            </div>
+
+                            <div class="date-info">
+                                <span class="m-0"> {{ $train['orario_partenza'] }} </span>
+                                <span class="m-0"> - {{ $train['orario_arrivo'] }} </span>
+                            </div>
+                        </div>
+
+                        {{-- Uso di un 'pannello destro' per display info ritardo e cancellazione --}}
+                        <div class="right">
+                            <p>
+                                @if ($train['puntuale'])
+                                    Puntuale
+                                @else
+                                    In Ritardo
+                                @endif
+                            </p>
+                            <p>
+                                @if ($train['cancellato'])
+                                    Cancellato
+                                @endif
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            @endforeach
+        </div>
+
+    </div>
 
 </body>
 
